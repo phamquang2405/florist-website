@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
+  "rules": {
+    "@next/next/no-img-element": "off",
+    "no-console": [
+      "warn",
+      {
+        "allow": ["info", "warn", "error"]
+      }
+    ]
+  }
+}
