@@ -3,13 +3,8 @@ import localFont from 'next/font/local';
 
 import '@/app/globals.css';
 import { cn } from '@/lib/utils/cn';
+import { env } from '@/lib/env';
 import { createMetadata } from '@/lib/seo/metadata';
-
-const headingFont = localFont({
-  src: '../assets/fonts/Georgia.ttf',
-  variable: '--font-heading',
-  display: 'swap'
-});
 
 const bodyFont = localFont({
   src: '../assets/fonts/Verdana.ttf',
@@ -18,7 +13,7 @@ const bodyFont = localFont({
 });
 
 export const metadata: Metadata = createMetadata({
-  title: 'Bloom Flower Shop',
+  title: env.NEXT_PUBLIC_APP_NAME,
   description: 'Landing page and storefront starter for a modern florist brand.',
   path: '/'
 });
@@ -32,7 +27,6 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          headingFont.variable,
           bodyFont.variable,
           'font-sans text-foreground'
         )}

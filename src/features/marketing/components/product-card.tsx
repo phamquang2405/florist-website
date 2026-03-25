@@ -1,22 +1,35 @@
+import Image from 'next/image';
 import { Heart, ShoppingBag } from 'lucide-react';
 
 import type { Product } from '@/features/marketing/data/landing-content';
 
 export function ProductCard({ product }: { product: Product }) {
+  const hasProductImage = Boolean(product.imageSrc);
+
   return (
     <article className="group">
       <div className="mb-4 overflow-hidden rounded-2xl bg-slate-100">
         <div className="relative aspect-[4/5]">
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-rose-50 to-slate-100 text-slate-400 transition-transform duration-500 group-hover:scale-110">
-            <div className="flex flex-col items-center">
-              <div className="mb-2 flex size-16 items-center justify-center rounded-full bg-white/70 text-2xl">
-                <span aria-hidden="true">{product.emoji}</span>
+          {hasProductImage ? (
+            <Image
+              src={product.imageSrc!}
+              alt={product.imageAlt ?? product.name}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-rose-50 to-slate-100 text-slate-400 transition-transform duration-500 group-hover:scale-110">
+              <div className="flex flex-col items-center">
+                <div className="mb-2 flex size-16 items-center justify-center rounded-full bg-white/70 text-2xl">
+                  <span aria-hidden="true">{product.emoji}</span>
+                </div>
+                <span className="text-xs font-medium uppercase tracking-widest">
+                  {product.category}
+                </span>
               </div>
-              <span className="text-xs font-medium uppercase tracking-widest">
-                {product.category}
-              </span>
             </div>
-          </div>
+          )}
 
           {product.tag ? (
             <span className="absolute left-4 top-4 rounded-full bg-rose-500 px-3 py-1 text-[10px] font-bold uppercase tracking-tight text-white">

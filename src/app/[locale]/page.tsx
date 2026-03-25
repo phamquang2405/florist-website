@@ -8,6 +8,7 @@ import {
   locales,
   type Locale
 } from '@/features/marketing/data/landing-content';
+import { env } from '@/lib/env';
 import { createMetadata } from '@/lib/seo/metadata';
 
 export const revalidate = 3600;
@@ -27,8 +28,8 @@ export async function generateMetadata({
 }: LocalePageProps): Promise<Metadata> {
   if (!isLocale(params.locale)) {
     return createMetadata({
-      title: 'Bloom Flower Shop',
-      description: 'Bloom Flower Shop',
+      title: env.NEXT_PUBLIC_APP_NAME,
+      description: env.NEXT_PUBLIC_APP_NAME,
       path: '/vi'
     });
   }

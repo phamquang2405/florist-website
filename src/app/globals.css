@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --font-heading:
+    "Palatino Linotype", "Book Antiqua", Cambria, "Times New Roman", serif;
   --background: 48 50% 98%;
   --foreground: 150 20% 13%;
   --card: 0 0% 100%;
@@ -50,6 +52,7 @@ a {
   h4 {
     @apply tracking-tight text-foreground;
     font-family: var(--font-heading), serif;
+    line-height: 1.2;
   }
 }
 

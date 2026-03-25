@@ -15,13 +15,13 @@ export function HeroSection({
   );
 
   return (
-    <section className="relative overflow-hidden pt-10 md:pt-16" aria-labelledby="hero-title">
+    <section className="relative overflow-hidden" aria-labelledby="hero-title">
       <div className="absolute inset-0 -z-10 overflow-hidden bg-rose-50/60">
         <div className="absolute right-10 top-20 size-80 rounded-full bg-rose-200/50 blur-3xl md:right-20 md:size-96" />
         <div className="absolute bottom-10 left-6 size-64 rounded-full bg-emerald-100/50 blur-3xl md:left-20" />
       </div>
 
-      <div className="marketing-container grid min-h-[calc(90vh-88px)] items-center gap-12 py-10 md:grid-cols-2">
+      <div className="marketing-container grid min-h-[calc(70vh-88px)] items-center gap-12 py-10 md:grid-cols-2">
         <header className="space-y-8">
           <p className="inline-flex rounded-full bg-rose-100 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-rose-600">
             {dictionary.announcement}

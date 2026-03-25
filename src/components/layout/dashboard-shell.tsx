@@ -4,6 +4,7 @@ import { User } from 'next-auth';
 import { LogoutButton } from '@/features/auth/components/logout-button';
 import { DashboardPreferences } from '@/features/items/components/dashboard-preferences';
 import { Badge } from '@/components/ui/badge';
+import { env } from '@/lib/env';
 
 export function DashboardShell({
   children,
@@ -19,7 +20,9 @@ export function DashboardShell({
           <div className="space-y-3">
             <Badge variant="secondary">Protected route</Badge>
             <div>
-              <h1 className="font-heading text-4xl">Welcome back, {user.name ?? 'Florist team'}.</h1>
+              <h1 className="font-heading text-4xl">
+                Welcome back, {user.name ?? env.NEXT_PUBLIC_APP_NAME}.
+              </h1>
               <p className="text-sm text-muted-foreground">
                 Manage arrangements, review stock notes, and test the example CRUD workflow.
               </p>
@@ -41,4 +44,3 @@ export function DashboardShell({
     </main>
   );
 }
-

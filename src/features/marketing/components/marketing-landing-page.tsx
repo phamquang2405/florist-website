@@ -16,8 +16,8 @@ export function MarketingLandingPage({ locale }: { locale: Locale }) {
     <div className="min-h-screen overflow-x-hidden bg-white text-slate-900">
       <StructuredData dictionary={dictionary} />
       <FloatingSocialLinks dictionary={dictionary} />
-      <MarketingHeader locale={locale} dictionary={dictionary} />
-      <main>
+      <MarketingHeader locale={locale} />
+      <main className="pt-[88px]">
         <HeroSection dictionary={dictionary} />
         <ProductsSection dictionary={dictionary} />
         <AboutSection dictionary={dictionary} />
