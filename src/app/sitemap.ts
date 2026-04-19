@@ -3,24 +3,12 @@ import type { MetadataRoute } from 'next';
 import { env } from '@/lib/env';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: `${env.NEXTAUTH_URL}/vi`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1
-    },
-    {
-      url: `${env.NEXTAUTH_URL}/en`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9
-    },
-    {
-      url: `${env.NEXTAUTH_URL}/login`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.4
-    }
-  ];
+  const routes = ['/', '/en', '/login'];
+
+  return routes.map((route) => ({
+    url: `${env.NEXTAUTH_URL}${route}`,
+    lastModified: new Date(),
+    changeFrequency: route === '/login' ? 'monthly' : 'weekly',
+    priority: route === '/' ? 1 : route === '/en' ? 0.9 : 0.4
+  }));
 }

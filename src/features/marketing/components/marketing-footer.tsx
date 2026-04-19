@@ -27,7 +27,10 @@ export function MarketingFooter({
         </div>
 
         <section aria-labelledby="quick-links-title">
-          <h2 id="quick-links-title" className="mb-6 font-bold">
+          <h2
+            id="quick-links-title"
+            className="mb-6 text-sm font-bold uppercase tracking-[0.24em] text-rose-200"
+          >
             {dictionary.footerLinksTitle}
           </h2>
           <ul className="space-y-4 text-sm font-medium text-slate-400">
@@ -42,7 +45,10 @@ export function MarketingFooter({
         </section>
 
         <section aria-labelledby="newsletter-title">
-          <h2 id="newsletter-title" className="mb-6 font-bold">
+          <h2
+            id="newsletter-title"
+            className="mb-6 text-sm font-bold uppercase tracking-[0.24em] text-rose-200"
+          >
             {dictionary.newsletterTitle}
           </h2>
           <p className="mb-4 text-sm text-slate-400">

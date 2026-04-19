@@ -5,31 +5,39 @@ import type { Product } from '@/features/marketing/data/landing-content';
 
 export function ProductCard({ product }: { product: Product }) {
   const hasProductImage = Boolean(product.imageSrc);
+  const productHref = product.href || '#lien-he';
+  const productTitleId = `product-${product.name.toLowerCase().replace(/[^a-z0-9]+/gi, '-')}`;
+  const isContactPrice = product.price === 'Liên hệ' || product.price === 'Contact';
+  const priceCurrency = product.price.includes('$') || product.price === 'Contact' ? 'USD' : 'VND';
+  const normalizedPrice = isContactPrice ? '0' : product.price.replace(/[^\d.]/g, '');
 
   return (
-    <article className="group">
+    <article className="group" itemScope itemType="https://schema.org/Product">
       <div className="mb-4 overflow-hidden rounded-2xl bg-slate-100">
         <div className="relative aspect-[4/5]">
-          {hasProductImage ? (
-            <Image
-              src={product.imageSrc!}
-              alt={product.imageAlt ?? product.name}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-rose-50 to-slate-100 text-slate-400 transition-transform duration-500 group-hover:scale-110">
-              <div className="flex flex-col items-center">
-                <div className="mb-2 flex size-16 items-center justify-center rounded-full bg-white/70 text-2xl">
-                  <span aria-hidden="true">{product.emoji}</span>
+          <a href={productHref} aria-labelledby={productTitleId} className="block h-full">
+            {hasProductImage ? (
+              <Image
+                src={product.imageSrc!}
+                alt={product.imageAlt ?? product.name}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                itemProp="image"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-rose-50 to-slate-100 text-slate-400 transition-transform duration-500 group-hover:scale-110">
+                <div className="flex flex-col items-center">
+                  <div className="mb-2 flex size-16 items-center justify-center rounded-full bg-white/70 text-2xl">
+                    <span aria-hidden="true">{product.emoji}</span>
+                  </div>
+                  <span className="text-xs font-medium uppercase tracking-widest">
+                    {product.category}
+                  </span>
                 </div>
-                <span className="text-xs font-medium uppercase tracking-widest">
-                  {product.category}
-                </span>
               </div>
-            </div>
-          )}
+            )}
+          </a>
 
           {product.tag ? (
             <span className="absolute left-4 top-4 rounded-full bg-rose-500 px-3 py-1 text-[10px] font-bold uppercase tracking-tight text-white">
@@ -47,7 +55,7 @@ export function ProductCard({ product }: { product: Product }) {
 
           <div className="absolute inset-x-0 bottom-0 translate-y-full p-4 transition-transform duration-300 group-hover:translate-y-0">
             <a
-              href={product.href}
+              href={productHref}
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-white py-3 text-sm font-bold shadow-xl"
             >
               <ShoppingBag size={16} />
@@ -57,10 +65,20 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
 
-      <h3 className="font-bold text-slate-800 transition-colors group-hover:text-rose-600">
-        {product.name}
+      <h3
+        id={productTitleId}
+        className="font-bold text-slate-800 transition-colors group-hover:text-rose-600"
+        itemProp="name"
+      >
+        <a href={productHref}>{product.name}</a>
       </h3>
-      <p className="mt-1 font-bold text-rose-600">{product.price}</p>
+      <p className="mt-1 font-bold text-rose-600" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+        <span itemProp="priceCurrency" content={priceCurrency} />
+        <span itemProp="price" content={normalizedPrice}>
+          {product.price}
+        </span>
+        <meta itemProp="availability" content="https://schema.org/InStock" />
+      </p>
     </article>
   );
 }

@@ -14,16 +14,9 @@ export function ProductsSection({
           description={dictionary.productsDescription}
           categories={dictionary.productCategories}
           productCollections={dictionary.productCollections}
+          locale={dictionary.locale}
+          moreProductsLabel={dictionary.moreProductsLabel}
         />
-
-        <div className="mt-16 text-center">
-          <a
-            href="#lien-he"
-            className="inline-flex rounded-full border border-slate-200 px-10 py-4 font-bold transition-all hover:bg-slate-900 hover:text-white"
-          >
-            {dictionary.moreProductsLabel}
-          </a>
-        </div>
       </div>
     </section>
   );

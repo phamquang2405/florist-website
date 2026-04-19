@@ -9,6 +9,7 @@ type MetadataInput = {
   robots?: Metadata['robots'];
   image?: string;
   locale?: string;
+  keywords?: string[];
 };
 
 export function createMetadata({
@@ -17,19 +18,23 @@ export function createMetadata({
   path,
   robots,
   image = 'https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1200&q=80',
-  locale = 'vi'
+  locale = 'vi',
+  keywords = []
 }: MetadataInput): Metadata {
   const url = new URL(path, env.NEXTAUTH_URL);
   const siteName = env.NEXT_PUBLIC_APP_NAME;
+  const titleTemplate = title === siteName ? siteName : `${title} | ${siteName}`;
 
   return {
     metadataBase: new URL(env.NEXTAUTH_URL),
-    title,
+    applicationName: siteName,
+    title: titleTemplate,
     description,
+    keywords,
     alternates: {
       canonical: url,
       languages: {
-        vi: new URL('/vi', env.NEXTAUTH_URL),
+        vi: new URL('/', env.NEXTAUTH_URL),
         en: new URL('/en', env.NEXTAUTH_URL)
       }
     },
@@ -39,6 +44,7 @@ export function createMetadata({
       url,
       siteName,
       locale: locale === 'vi' ? 'vi_VN' : 'en_US',
+      alternateLocale: locale === 'vi' ? 'en_US' : 'vi_VN',
       type: 'website',
       images: [
         {
@@ -55,6 +61,7 @@ export function createMetadata({
       description,
       images: [image]
     },
+    category: 'flowers',
     robots
   };
 }

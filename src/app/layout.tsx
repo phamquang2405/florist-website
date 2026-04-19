@@ -14,8 +14,9 @@ const bodyFont = localFont({
 
 export const metadata: Metadata = createMetadata({
   title: env.NEXT_PUBLIC_APP_NAME,
-  description: 'Landing page and storefront starter for a modern florist brand.',
-  path: '/'
+  description: 'Modern florist storefront with localized landing pages, curated bouquets, and fast delivery-ready SEO foundations.',
+  path: '/',
+  keywords: ['florist', 'flower shop', 'fresh bouquets', 'wedding flowers', 'birthday flowers']
 });
 
 export default function RootLayout({

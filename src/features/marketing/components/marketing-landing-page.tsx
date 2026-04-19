@@ -15,7 +15,18 @@ export function MarketingLandingPage({ locale }: { locale: Locale }) {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white text-slate-900">
       <StructuredData dictionary={dictionary} />
-      <FloatingSocialLinks dictionary={dictionary} />
+      <FloatingSocialLinks
+        locale={dictionary.locale}
+        contactTitle={dictionary.contactTitle}
+        hotlineLabel={dictionary.contactPoints[0]?.label ?? 'Hotline'}
+        floatingSocialLinks={dictionary.floatingSocialLinks.map((link) => ({
+          label: link.label,
+          href: link.href,
+          imageSrc: link.imageSrc,
+          customText: link.customText,
+          className: link.className,
+        }))}
+      />
       <MarketingHeader locale={locale} />
       <main className="pt-[88px]">
         <HeroSection dictionary={dictionary} />

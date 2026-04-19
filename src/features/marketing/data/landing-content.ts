@@ -28,6 +28,7 @@ export type SocialLink = {
   label: string;
   href: string;
   icon?: LucideIcon;
+  imageSrc?: string;
   customText?: string;
   className: string;
 };
@@ -141,27 +142,27 @@ export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
 }
 
-export function getHomeHref(locale: Locale): '/vi' | '/en' {
-  return locale === 'vi' ? '/vi' : '/en';
+export function getHomeHref(locale: Locale): '/' | '/en' {
+  return locale === 'vi' ? '/' : '/en';
 }
 
 const commonSocialLinks: SocialLink[] = [
   {
     label: 'Instagram',
-    href: 'https://instagram.com',
+    href: 'https://www.instagram.com/bloom_bliss.florist/',
     icon: Instagram,
     className:
       'bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white',
   },
   {
     label: 'Zalo',
-    href: 'https://zalo.me',
-    customText: 'Z',
+    href: 'https://zalo.me/0969740147',
+    imageSrc: '/zalo-icon.svg',
     className: 'bg-[#0068FF] text-white',
   },
   {
     label: 'Messenger',
-    href: 'https://m.me',
+    href: 'https://www.facebook.com/bloombliss.florist10',
     icon: MessageCircle,
     className: 'bg-gradient-to-b from-[#00c6ff] to-[#0072ff] text-white',
   },
@@ -219,7 +220,7 @@ const dictionaries: Record<Locale, MarketingDictionary> = {
     },
     heroSecondaryCta: {
       label: 'Liên hệ ngay',
-      href: 'tel:19006789',
+      href: 'tel:0969740147',
       icon: Phone,
     },
     heroBadge: {
@@ -240,11 +241,11 @@ const dictionaries: Record<Locale, MarketingDictionary> = {
     moreProductsLabel: 'Xem thêm 200+ mẫu hoa khác',
     aboutEyebrow: 'Về thương hiệu',
     aboutTitle: `Về ${appName}`,
-    aboutDescription: `${appName} là tiệm hoa theo phong cách đương đại, tập trung vào cảm xúc, tốc độ giao hàng và trải nghiệm đặt hoa tinh gọn cho khách hàng tại TP. HCM.`,
+    aboutDescription: `${appName} là tiệm hoa theo phong cách đương đại, tập trung vào cảm xúc, tốc độ giao hàng và trải nghiệm đặt hoa tinh gọn cho khách hàng tại Đà Nẵng.`,
     aboutStats: [
       {
         title: '2 giờ',
-        description: 'Giao hoa nhanh nội thành TP. HCM.',
+        description: 'Giao hoa nhanh nội thành Đà Nẵng.',
         tone: 'rose',
       },
       {
@@ -264,12 +265,12 @@ const dictionaries: Record<Locale, MarketingDictionary> = {
     contactPoints: [
       {
         label: 'Hotline hỗ trợ',
-        value: '1900 6789',
+        value: '0969740147',
         icon: Phone,
       },
       {
         label: 'Địa chỉ cửa hàng',
-        value: '123 Đường Hoa Hồng, Quận 1, TP. HCM',
+        value: '159 Hải Sơn, Hải Châu, Đà Nẵng',
         icon: MapPin,
       },
       {
@@ -348,7 +349,7 @@ const dictionaries: Record<Locale, MarketingDictionary> = {
     },
     heroSecondaryCta: {
       label: 'Contact now',
-      href: 'tel:19006789',
+      href: 'tel:0969740147',
       icon: Phone,
     },
     heroBadge: {
@@ -369,11 +370,11 @@ const dictionaries: Record<Locale, MarketingDictionary> = {
     moreProductsLabel: 'See 200+ more floral designs',
     aboutEyebrow: 'About the brand',
     aboutTitle: `About ${appName}`,
-    aboutDescription: `${appName} is a contemporary flower boutique focused on emotion, delivery speed, and a seamless gifting experience for customers in Ho Chi Minh City.`,
+    aboutDescription: `${appName} is a contemporary flower boutique focused on emotion, delivery speed, and a seamless gifting experience for customers in Da Nang.`,
     aboutStats: [
       {
         title: '2 hours',
-        description: 'Fast inner-city delivery in Ho Chi Minh City.',
+        description: 'Fast inner-city delivery in Da Nang.',
         tone: 'rose',
       },
       {
@@ -393,12 +394,12 @@ const dictionaries: Record<Locale, MarketingDictionary> = {
     contactPoints: [
       {
         label: 'Support hotline',
-        value: '1900 6789',
+        value: '0969740147',
         icon: Phone,
       },
       {
         label: 'Store address',
-        value: '123 Rose Street, District 1, Ho Chi Minh City',
+        value: '159 Hai Son, Hai Chau District, Da Nang',
         icon: MapPin,
       },
       {

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 import { MarketingLandingPage } from '@/features/marketing/components/marketing-landing-page';
 import {
@@ -20,7 +20,7 @@ type LocalePageProps = {
 };
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return locales.filter((locale) => locale !== 'vi').map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({
@@ -30,7 +30,16 @@ export async function generateMetadata({
     return createMetadata({
       title: env.NEXT_PUBLIC_APP_NAME,
       description: env.NEXT_PUBLIC_APP_NAME,
-      path: '/vi'
+      path: '/'
+    });
+  }
+
+  if (params.locale === 'vi') {
+    return createMetadata({
+      title: env.NEXT_PUBLIC_APP_NAME,
+      description: env.NEXT_PUBLIC_APP_NAME,
+      path: '/',
+      locale: 'vi',
     });
   }
 
@@ -40,13 +49,35 @@ export async function generateMetadata({
     title: dictionary.meta.title,
     description: dictionary.meta.description,
     path: `/${params.locale}`,
-    locale: params.locale
+    locale: params.locale,
+    keywords:
+      params.locale === 'vi'
+        ? [
+            'hoa tươi',
+            'shop hoa',
+            'hoa sinh nhật',
+            'hoa cưới',
+            'hoa khai trương',
+            'hoa tốt nghiệp'
+          ]
+        : [
+            'flower shop',
+            'fresh flowers',
+            'birthday bouquet',
+            'wedding bouquet',
+            'grand opening flowers',
+            'graduation bouquet'
+          ]
   });
 }
 
 export default function LocalizedHomePage({ params }: LocalePageProps) {
   if (!isLocale(params.locale)) {
     notFound();
+  }
+
+  if (params.locale === 'vi') {
+    redirect('/');
   }
 
   return <MarketingLandingPage locale={params.locale as Locale} />;
