@@ -50,24 +50,14 @@ export async function generateMetadata({
     description: dictionary.meta.description,
     path: `/${params.locale}`,
     locale: params.locale,
-    keywords:
-      params.locale === 'vi'
-        ? [
-            'hoa tươi',
-            'shop hoa',
-            'hoa sinh nhật',
-            'hoa cưới',
-            'hoa khai trương',
-            'hoa tốt nghiệp'
-          ]
-        : [
-            'flower shop',
-            'fresh flowers',
-            'birthday bouquet',
-            'wedding bouquet',
-            'grand opening flowers',
-            'graduation bouquet'
-          ]
+    keywords: [
+      'flower shop',
+      'fresh flowers',
+      'birthday bouquet',
+      'wedding bouquet',
+      'grand opening flowers',
+      'graduation bouquet',
+    ]
   });
 }
 
